@@ -1,4 +1,3 @@
-// var cloze = require("./ClozeCard");
 
 
 function BasicCard (front, back) {

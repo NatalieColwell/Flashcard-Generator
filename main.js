@@ -25,6 +25,7 @@ function promptUser() {
         }
     }); 
 }
+promptUser();
 
 
 //basic flash card Q&A set up
@@ -34,26 +35,121 @@ var krypton = new BasicCard("What element starts with the letter 'K'?", "Krypton
 var five = new BasicCard("How many states boarder the Gulf of Mexico?", "five");
 var michigan = new BasicCard("What state has more shoreline than the entire Atlanic seaboard?", "Michigan");
 
+//basic card questions & user input
 function bcOne() {
     inquirer.prompt([
         {
             type: "input",
             message: AmeliaEarhart.front,
-            name: "Amelia Earhart"
+            name: "answerAmelia"
         }
-    ]).then(function (input) {
-        if(input.AmeliaEarhart === "Amelia Earhart" || input.AmeliaEarhart === "amelia earhart") {
+    ]).then(function (userInput) {
+        if(userInput.answerAmelia === AmeliaEarhart.back) {
             console.log("Nice! Your answer is correct");
             bcTwo();
         }
         else{
             console.log("Uh oh...looks liek you got this one wrong, the correct answer is " + AmeliaEarhart.back);
-            return bcOne();
+            bcOne();
+        }
+    })
+}
+function bcTwo() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: krypton.front,
+            name: "answerKrypton"
+        }
+    ]).then(function (userInput) {
+        if(userInput.answerKrypton === krypton.back) {
+            console.log("Well done! Your answer is correct");
+            bcThree();
+        }
+        else{
+            console.log("Uh oh...looks liek you got this one wrong, the correct answer is " + krypton.back);
+            bcThree();
+        }
+    })
+}
+function bcThree() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: batman.front,
+            name: "answerBruce"
+        }
+    ]).then(function (userInput) {
+        if(userInput.answerBruce === batman.back) {
+            console.log("Woohoo! Your answer is correct");
+            bcFour();
+        }
+        else{
+            console.log("Uh oh...looks liek you got this one wrong, the correct answer is " + batman.back);
+            bcTFour();
+        }
+    })
+}
+function bcFour() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: five.front,
+            name: "answerFive"
+        }
+    ]).then(function (userInput) {
+        if(userInput.answerFive === five.back || userInput.answerFive === "5") {
+            console.log("Awesome! Your answer is correct");
+            bcFive();
+        }
+        else{
+            console.log("Uh oh...looks liek you got this one wrong, the correct answer is " + five.back);
+            bcTFive();
+        }
+    })
+}
+function bcFive() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: michigan.front,
+            name: "answermichigan"
+        }
+    ]).then(function (userInput) {
+        if(userInput.answermichigan === michigan.back || userInput.answermichigan === "michigan") {
+            console.log("YAY! Your answer is correct");
+            bcFive();
+        }
+        else{
+            console.log("Uh oh...looks liek you got this one wrong, the correct answer is " + michigan.back);
+            endGame();
         }
     })
 }
 
+//cloze flash card Q&A set up
+var clozeArr = [];
 
+function clozeQuest() {
+    var clozeQ = new ClozeCard(text, cloze)
+    clozeArr.push(clozeQ);
+}
+
+var cloze1 = new ClozeCard("Amelia Earhart was the first femal to fly across the Atlantic Ocean", "Amelia Earhart");
+var cloze2 = new ClozeCard("Bruce Wayne is Batman's secret Idenity", "Bruce Wayne");
+var cloze2 = new ClozeCard("Krypton is an element that is the letter 'K' on the periodic table");
+var cloze3 = new ClozeCard("Michigan has more shoreline than the entire Atlantic seaboard", "Michigan");
+var cloze4 = new ClozeCard("Red, yellow, blue are all primary colors", "red, yellow, blue");
+var cloze5 = new ClozeCard("Toto, I have a feeling we aren't in Kansas anymore", "Toto");
+
+
+//cloze card questions & user input
+
+// var count = 0;
+
+// function clozeQ() {
+//     if()
+// }
 
 // var firstPresident = new BasicCard(
 //     "Who was the first president of the United States?", "George Washington");

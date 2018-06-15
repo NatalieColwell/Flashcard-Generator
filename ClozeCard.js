@@ -9,7 +9,4 @@ function ClozeCards (text, cloze) {
 
 
 
-
-
-
 module.exports = ClozeCards;
