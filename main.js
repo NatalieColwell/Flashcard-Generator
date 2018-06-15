@@ -21,7 +21,7 @@ function promptUser() {
             bcOne();
         }else {
             console.log("\r\n" + "Nice, you've chose Cloze style flashcards" + "\r\n");
-            clozeOne();
+            startClozeQ();
         }
     }); 
 }
@@ -122,7 +122,7 @@ function bcFive() {
         }
         else{
             console.log("Uh oh...looks liek you got this one wrong, the correct answer is " + michigan.back);
-            endGame();
+        
         }
     })
 }
@@ -145,11 +145,32 @@ var cloze5 = new ClozeCard("Toto, I have a feeling we aren't in Kansas anymore",
 
 //cloze card questions & user input
 
-// var count = 0;
+var count = 0;
 
-// function clozeQ() {
-//     if()
-// }
+function startClozeQ() {
+    if(count < clozeArr.length) {
+        inquirer.prompt([
+            {
+            type: "input",
+            name: "text",
+            message: clozeArr[count].partial,
+            name: "clozeAnswer"
+            }
+        ]).then(function(userInput) {
+            if(userInput.clozeAnswer === clozeArr.cloze) {
+                console.log("Wooohooo, you guessed right!");
+                console.log(clozeArr[clozeQ].fullText);
+                count++;
+                if(clozeQ <= 4) {
+                    startClozeQ();
+                }
+                else {
+                    console.log("well done! you completed all cards!")
+                }
+            }
+        })
+    }
+}
 
 // var firstPresident = new BasicCard(
 //     "Who was the first president of the United States?", "George Washington");
