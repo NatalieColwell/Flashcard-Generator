@@ -127,8 +127,7 @@ function bcFive() {
     })
 }
 
-//cloze flash card Q&A set up
-var clozeArr = [];
+
 
 function clozeQuest() {
     var clozeQ = new ClozeCard(text, cloze)
@@ -142,9 +141,11 @@ var cloze3 = new ClozeCard("Michigan has more shoreline than the entire Atlantic
 var cloze4 = new ClozeCard("Red, yellow, blue are all primary colors", "red, yellow, blue");
 var cloze5 = new ClozeCard("Toto, I have a feeling we aren't in Kansas anymore", "Toto");
 
+//cloze flash card Q&A set up
+var clozeArr = [cloze1, cloze2, cloze3, cloze4, cloze5];
+
 
 //cloze card questions & user input
-
 var count = 0;
 
 function startClozeQ() {
@@ -153,13 +154,13 @@ function startClozeQ() {
             {
             type: "input",
             name: "text",
-            message: clozeArr[count].partial,
+            message: clozeArr[1][count].partial,
             name: "clozeAnswer"
             }
         ]).then(function(userInput) {
             if(userInput.clozeAnswer === clozeArr.cloze) {
                 console.log("Wooohooo, you guessed right!");
-                console.log(clozeArr[clozeQ].fullText);
+                console.log(clozeArr[1][clozeQ].fullText);
                 count++;
                 if(clozeQ <= 4) {
                     startClozeQ();
